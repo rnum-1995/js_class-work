@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>家計簿アプリ（ダッシュボード）</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-light">
+
+    <div class="container py-5">
+        <h1 class="mb-4 text-center">家計簿ダッシュボード</h1>
+
+        <!-- 集計エリア -->
+        <div class="row mb-4">
+            <div class="col-md-4">
+                <div class="card text-center border-primary mb-3">
+                    <div class="card-header bg-primary text-white">収入合計</div>
+                    <div class="card-body">
+                        <h4 class="card-title text-primary" id="income-total">0円</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-center border-danger mb-3">
+                    <div class="card-header bg-danger text-white">支出合計</div>
+                    <div class="card-body">
+                        <h4 class="card-title text-danger" id="expense-total">0円</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-center border-success mb-3">
+                    <div class="card-header bg-success text-white">残高</div>
+                    <div class="card-body">
+                        <h4 class="card-title fw-bold" id="balance-total">0円</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- フィルタリングボタン -->
+        <div class="d-flex justify-content-center mb-4">
+            <div class="btn-group" role="group">
+                <input type="radio" class="btn-check" name="btnradio" id="btn-all" autocomplete="off" checked>
+                <label class="btn btn-outline-secondary" for="btn-all">すべて</label>
+            
+                <input type="radio" class="btn-check" name="btnradio" id="btn-income" autocomplete="off">
+                <label class="btn btn-outline-primary" for="btn-income">収入のみ</label>
+            
+                <input type="radio" class="btn-check" name="btnradio" id="btn-expense" autocomplete="off">
+                <label class="btn btn-outline-danger" for="btn-expense">支出のみ</label>
+            </div>
+        </div>
+
+        <!-- 取引一覧テーブル -->
+        <div class="card shadow-sm">
+            <div class="card-header">取引一覧</div>
+            <div class="card-body p-0">
+                <table class="table table-striped table-hover mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th>日付</th>
+                            <th>項目</th>
+                            <th class="text-end">金額</th>
+                            <th class="text-center">種別</th>
+                        </tr>
+                    </thead>
+                    <tbody id="transaction-list">
+                        <!-- ここにJavaScriptでリストを追加 -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Bootstrap JS (Optional) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

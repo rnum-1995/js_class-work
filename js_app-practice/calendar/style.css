@@ -1,0 +1,16 @@
+/* カレンダーの基本スタイル */
+.calendar-table th,
+.calendar-table td {
+  width: 14.28%;
+  /* 7等分 */
+  height: 80px;
+  /* セルの高さ */
+  vertical-align: middle;
+}
+
+/* 今日の日付のハイライト（発展課題用） */
+.today {
+  background-color: #fff3cd !important;
+  /* 薄い黄色 */
+  font-weight: bold;
+}

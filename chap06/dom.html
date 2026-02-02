@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOMの操作</title>
+    <style>
+        .list__item {
+            color: red;
+        }
+
+        /* 2番目のliのみ文字の色を青くする */
+        .list__item:nth-child(2) {
+            color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>DOMの操作</h1>
+    <div id="practice">練習</div>
+    <!-- ul>li*3{item$$} -->
+    <ul class="list">
+        <li class="list__item">item01</li>
+        <li class="list__item">item02</li>
+        <li class="list__item">item03</li>
+    </ul>
+    <script src="dom.js"></script>
+</body>
+
+</html>
