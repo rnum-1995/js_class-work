@@ -49,44 +49,46 @@ function generateCalendar(year, month) {
   // TODO: カレンダー生成ロジックの実装
   // ヒント:
   // 1. 月初めの曜日を取得: new Date(year, month, 1).getDay()
-  let firstOfDay = new Date(year, month - 1, 1).getDay();
+  let firstDay = new Date(year, month, 1).getDay();
 
   // 2. 月末の日付を取得: new Date(year, month + 1, 0).getDate()
-  let lastOfDate = new Date(year, month, 0).getDate();
+  let lastDate = new Date(year, month + 1, 0).getDate();
 
   // 3. ループを使ってHTMLを組み立てる
   //    - 最初の空白セル (曜日インデックスの分だけ空のtd)
   //    - 1日から末日までのtd
   //    - 土曜日(6)が来たらtrを閉じて新しいtrを開始
 
+  let html = '<tr>';
 
-  for (let i = 0; i < firstOfDay; i++) {
-    let trElm = document.createElement('tr');
-    calendarBody.appendChild(trElm);
-    for (let g = 0; g < 7; g++) {
-      let tdElm = document.createElement('td');
-      trElm.appendChild(tdElm);
-      for (let day = 1; day <= lastOfDate; day++) {
-        tdElm.textContent = day;
-      }
-    }
-    console.log(trElm);
+  for (let i = 0; i < 42; i++) {
+    if (i > 0 && i % 7 === 0) html += '</tr><tr>';
+    const date = i - firstDay + 1;
+    html += `<td>${(date > 0 && date <= lastDate) ? date : ''}</td>`;
+    if (date >= lastDate && (i + 1) % 7 === 0) break;
   }
-
-  // for (let day = 1; day <= lastOfDate; day++) {
-  //   let tdElm = document.createElement('td');
-  //   tdElm.textContent = day;
-  //   // if (lastOfDate % 7 === 0) {
-  //   //   let trElm = document.createElement('tr');
-  //   //   trElm.append(tdElm);
-  //   //   console.log(trElm);
-  //   // }
-
+  document.getElementById('calendar-body').innerHTML = html + '</tr>';
 }
-
-
-
-
-
 // 実行
 init();
+
+// for (let i = 0; i < firstOfDay; i++) {
+//   let trElm = document.createElement('tr');
+//   calendarBody.appendChild(trElm);
+//   for (let g = 0; g < 7; g++) {
+//     let tdElm = document.createElement('td');
+//     trElm.appendChild(tdElm);
+//     for (let day = 1; day <= lastOfDate; day++) {
+//       tdElm.textContent = day;
+//     }
+//   }
+//   console.log(trElm);
+
+// for (let day = 1; day <= lastOfDate; day++) {
+//   let tdElm = document.createElement('td');
+//   tdElm.textContent = day;
+//   // if (lastOfDate % 7 === 0) {
+//   //   let trElm = document.createElement('tr');
+//   //   trElm.append(tdElm);
+//   //   console.log(trElm);
+//   // }
