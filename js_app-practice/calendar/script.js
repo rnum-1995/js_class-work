@@ -3,7 +3,9 @@ function init() {
   updateClock();
   // 1秒ごと（またはそれ以下）にupdateClockを呼び出すタイマーを設定
   // TODO: setIntervalの実装
-
+  setInterval(() => {
+    updateClock()
+  },);
   // カレンダーの生成
   const now = new Date();
   generateCalendar(now.getFullYear(), now.getMonth());
@@ -30,7 +32,6 @@ function updateClock() {
   const DateArea = document.getElementById('current-date');
   let toDay = `${year}年 ${month}月 ${date}日 (${weekArray[day]})`
   DateArea.innerHTML = `<p>${toDay}</p>`;
-
   // 3. 時・分・秒を取得し、2桁埋めをして #current-time に表示
   let nowTime = document.getElementById('current-time');
   nowTime.innerHTML = `${hour} : ${minute} : ${second}`
@@ -57,20 +58,35 @@ function generateCalendar(year, month) {
   //    - 最初の空白セル (曜日インデックスの分だけ空のtd)
   //    - 1日から末日までのtd
   //    - 土曜日(6)が来たらtrを閉じて新しいtrを開始
-  for (let i = 0; i < 4; i++) {
+
+
+  for (let i = 0; i < firstOfDay; i++) {
     let trElm = document.createElement('tr');
     calendarBody.appendChild(trElm);
     for (let g = 0; g < 7; g++) {
       let tdElm = document.createElement('td');
-      // let date = now.getDate();
-      tdElm.innerHTML = `<p>1</p>`;
       trElm.appendChild(tdElm);
+      for (let day = 1; day <= lastOfDate; day++) {
+        tdElm.textContent = day;
+      }
     }
-    console.log(calendarBody);
+    console.log(trElm);
   }
 
+  // for (let day = 1; day <= lastOfDate; day++) {
+  //   let tdElm = document.createElement('td');
+  //   tdElm.textContent = day;
+  //   // if (lastOfDate % 7 === 0) {
+  //   //   let trElm = document.createElement('tr');
+  //   //   trElm.append(tdElm);
+  //   //   console.log(trElm);
+  //   // }
 
 }
 
+
+
+
+
 // 実行
-init(setInterval(updateClock()));
+init();
