@@ -6,11 +6,21 @@ const members = [
 ];
 
 //listModalを取得してその中身を初期化
-
+const listModal = document.getElementById('listModal');
+listModal.innerHTML = '';
 
 // members配列の情報から画像と名前を取得して表示させる
 // ※表示例はHTMLファイルのコメントアウトを参照
 
+//・li作成
+const listModalLi = document.createElement('li');
+//・ulにliを挿入
+listModal.appendChild(listModalLi);
+//・div作成
+const listModalDiv = document.createElement('div');
+listModalDiv.className = 'round-thumbnail';
+//・divをliに挿入
+listModalLi.appendChild(listModalDiv);
 
 
 // 一覧のそれぞれのボタンが押されたとき、そのハリネズミの詳細データをモーダルにセットして表示する
