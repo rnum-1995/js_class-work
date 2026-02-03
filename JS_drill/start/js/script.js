@@ -170,10 +170,7 @@ kinds.addEventListener('change', () => {
 // 引数：birthday
 // 戻り値:age
 
-const ageResult = document.querySelector('.age');
-
 // 2.関数を実行して返ってきた年齢を class="age"に表示してください
-
 const birthday_var = "1995-05-16";
 
 //年齢を算出する関数を定義
@@ -186,14 +183,15 @@ const calculateAge = ((birthday) => {
     let age = today.getFullYear() - birthDate.getFullYear();
     //4. 今年の月から誕生月を引く
     let m = today.getMonth() - birthDate.getMonth();
-    let d = today.getDate() - birthDate.getDate();
-    if (0 > m || (m === 0 && 0 > d)) {
+    if (0 > m || m === 0 && today.getDate() < birthDate.getDate()) {
         age--
     }
     return age;
 });
 
-ageResult.innerHTML = calculateAge(birthday_var);
+const age = calculateAge(birthday_var);
+const ageResult = document.querySelector('.age');
+ageResult.innerText = `${age}歳`;
 
 
 
@@ -218,9 +216,27 @@ const animals = [
 ];
 
 // 要素を取得
-
+const checkBox = document.getElementById('weightCheck');
+const animalList = document.querySelector('.animal-list');
 
 // 1.全てを表示する関数を定義
+const renderAnimals = ((animals) => {
+    animalList.innerHTML = '';
+    animals.forEach(animal => {
+        const animalLi = document.createElement('li');
+        animalLi.textContent = `${animal.name} : ${animal.weight}kg (${animal.live})`;
+        animalList.appendChild(animalLi);
+    });
+});
 
+renderAnimals(animals);
 
 //2.チェックボックスにチェックが入っているとき、weightが500未満の生き物だけが表示されるイベントを記述
+checkBox.addEventListener('change', () => {
+    if (checkBox.checked) {
+        const underWeight = animals.filter(animal => animal.weight < 500);
+        renderAnimals(underWeight);
+    } else {
+        renderAnimals(animals);
+    }
+});
